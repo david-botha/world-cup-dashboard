@@ -9,7 +9,6 @@
 # Stack
 
 - Next.js (App Router), TypeScript, Tailwind
-- Supabase (Postgres + Realtime)
 - football-data.org API
 
 # Conventions
