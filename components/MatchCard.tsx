@@ -4,7 +4,9 @@ export default function MatchCard({ match }: { match: Match }) {
   const homeTeam = match.homeTeam
   const awayTeam = match.awayTeam
 
-  const score = ['IN_PLAY', 'LIVE', 'FINISHED'].includes(match.status) ? match.score : null
+  const score = ['IN_PLAY', 'LIVE', 'FINISHED', 'PAUSED'].includes(match.status)
+    ? match.score
+    : null
 
   const kickoffTime = new Date(match.utcDate).toLocaleTimeString([], {
     hour: '2-digit',
