@@ -13,3 +13,8 @@ export async function footballFetch(path: string) {
     console.error('Error fetching data:', error)
   }
 }
+
+export async function getTodaysMatches() {
+  const today = new Date().toISOString().split('T')[0]
+  return footballFetch(`/competitions/WC/matches?dateFrom=${today}&dateTo=${today}`)
+}
