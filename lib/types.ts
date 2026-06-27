@@ -7,4 +7,5 @@ export type Match = {
   score: {
     fullTime: { home: number | null; away: number | null }
   }
+  minute: number | null
 }

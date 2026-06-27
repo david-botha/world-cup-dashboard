@@ -21,7 +21,20 @@ export default function MatchCard({ match }: { match: Match }) {
       </div>
 
       <div className="w-24 text-center">
-        {score ? `${score.fullTime.home} - ${score.fullTime.away}` : kickoffTime}
+        {score ? (
+          <>
+            <div>
+              {score.fullTime.home} - {score.fullTime.away}
+            </div>
+            <div className="text-sm text-gray-500">
+              {match.status === 'PAUSED' && 'HT'}
+              {match.status === 'FINISHED' && 'FT'}
+              {match.status === 'IN_PLAY' && match.minute && `${match.minute}'`}
+            </div>
+          </>
+        ) : (
+          kickoffTime
+        )}
       </div>
 
       <div className="flex-1 flex items-center gap-2">
