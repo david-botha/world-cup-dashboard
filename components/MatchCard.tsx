@@ -29,7 +29,6 @@ export default function MatchCard({ match }: { match: Match }) {
             <div className="text-sm text-gray-500">
               {match.status === 'PAUSED' && 'HT'}
               {match.status === 'FINISHED' && 'FT'}
-              {match.status === 'IN_PLAY' && match.minute && `${match.minute}'`}
             </div>
           </>
         ) : (
