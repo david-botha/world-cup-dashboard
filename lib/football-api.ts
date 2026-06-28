@@ -1,3 +1,5 @@
+import 'server-only'
+
 const BASE_URL = 'https://api.football-data.org/v4'
 const API_KEY = process.env.FOOTBALL_DATA_API_KEY
 

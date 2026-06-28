@@ -8,3 +8,21 @@ export type Match = {
     fullTime: { home: number | null; away: number | null }
   }
 }
+
+export type TeamStanding = {
+  position: number
+  team: { name: string; crest: string }
+  playedGames: number
+  won: number
+  draw: number
+  lost: number
+  points: number
+  goalsFor: number
+  goalsAgainst: number
+  goalDifference: number
+}
+
+export type Group = {
+  group: string
+  table: TeamStanding[]
+}

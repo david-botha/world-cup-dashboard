@@ -29,6 +29,9 @@ export default function MatchCard({ match }: { match: Match }) {
             <div className="text-sm text-gray-500">
               {match.status === 'PAUSED' && 'HT'}
               {match.status === 'FINISHED' && 'FT'}
+              {(match.status === 'IN_PLAY' || match.status === 'LIVE') && (
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block" />
+              )}
             </div>
           </>
         ) : (
