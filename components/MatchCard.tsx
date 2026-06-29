@@ -26,7 +26,7 @@ export default function MatchCard({ match }: { match: Match }) {
             <div>
               {score.fullTime.home} - {score.fullTime.away}
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-400">
               {match.status === 'PAUSED' && 'HT'}
               {match.status === 'FINISHED' && 'FT'}
               {(match.status === 'IN_PLAY' || match.status === 'LIVE') && (

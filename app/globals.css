@@ -1,1 +1,12 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-wc-bg: #11161f;
+  --color-wc-surface: #1a2131;
+  --color-wc-border: #232d40;
+}
+
+body {
+  background-color: #11161f;
+  color: #e5e7eb;
+}
