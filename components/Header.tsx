@@ -15,6 +15,12 @@ export default function Header() {
             Matches
           </Link>
           <Link
+            href="/results"
+            className="text-sm font-medium tracking-widest uppercase hover:text-yellow-400 transition-colors duration-300"
+          >
+            Results
+          </Link>
+          <Link
             href="/standings"
             className="text-sm font-medium tracking-widest uppercase hover:text-yellow-400 transition-colors duration-300"
           >
