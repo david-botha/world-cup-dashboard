@@ -4,9 +4,19 @@ import { groupMatchesByDate } from '@/lib/utils'
 import MatchCard from '@/components/MatchCard'
 
 export default async function Results() {
-  const data = await footballFetch('/competitions/WC/matches')
-  const matches: Match[] = data.matches
+  const result = await footballFetch<{ matches: Match[] }>('/competitions/WC/matches')
 
+  if (!result.ok) {
+    return (
+      <div className="max-w-2xl mx-auto p-4 text-center text-gray-400">
+        {result.status === 429
+          ? 'Too many requests - please wait a minute and try again.'
+          : 'Something went wrong loading results.'}
+      </div>
+    )
+  }
+
+  const matches: Match[] = result.data.matches
   const groups = groupMatchesByDate(matches)
 
   return (
