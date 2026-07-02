@@ -26,6 +26,12 @@ export default function Header() {
           >
             Standings
           </Link>
+          <Link
+            href="/scorers"
+            className="text-sm font-medium tracking-widest uppercase hover:text-yellow-400 transition-colors duration-300"
+          >
+            Top Scorers
+          </Link>
         </div>
       </nav>
     </header>

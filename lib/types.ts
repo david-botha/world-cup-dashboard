@@ -26,3 +26,9 @@ export type Group = {
   group: string
   table: TeamStanding[]
 }
+
+export type Scorer = {
+  player: { id: number; name: string }
+  team: { name: string; crest: string }
+  goals: number
+}
