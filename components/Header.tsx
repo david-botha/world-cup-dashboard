@@ -32,6 +32,12 @@ export default function Header() {
           >
             Top Scorers
           </Link>
+          <Link
+            href="/knockouts"
+            className="text-sm font-medium tracking-widest uppercase hover:text-yellow-400 transition-colors duration-300"
+          >
+            Knockouts
+          </Link>
         </div>
       </nav>
     </header>

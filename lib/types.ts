@@ -1,6 +1,7 @@
 export type Match = {
   id: number
   status: string
+  stage: string
   utcDate: string
   homeTeam: { name: string; crest: string }
   awayTeam: { name: string; crest: string }

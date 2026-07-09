@@ -30,3 +30,18 @@ export async function getTodaysMatches() {
     `/competitions/WC/matches?dateFrom=${today}&dateTo=${today}`
   )
 }
+
+export async function getKnockoutMatches() {
+  const result = await footballFetch<{ matches: Match[] }>('/competitions/WC/matches')
+
+  if (!result.ok) {
+    return result
+  }
+
+  return {
+    ok: true as const,
+    data: {
+      matches: result.data.matches.filter(match => match.stage !== 'GROUP_STAGE'),
+    },
+  }
+}
