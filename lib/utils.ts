@@ -21,6 +21,8 @@ export function groupMatchesByDate(matches: Match[]) {
   return groups
 }
 
+export const WORLD_CUP_FINAL_DATE = '2026-07-19'
+
 export const KNOCKOUT_STAGE_ORDER = ['LAST_32', 'LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL']
 
 export const KNOCKOUT_STAGE_LABELS: Record<string, string> = {
