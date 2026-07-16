@@ -16,8 +16,8 @@ export default function StandingsTable({ group }: { group: Group }) {
               <th className="text-right py-1 w-8">W</th>
               <th className="text-right py-1 w-8">D</th>
               <th className="text-right py-1 w-8">L</th>
-              <th className="text-right py-1 w-10">GF</th>
-              <th className="text-right py-1 w-10">GA</th>
+              <th className="text-right py-1 w-10 hidden sm:table-cell">GF</th>
+              <th className="text-right py-1 w-10 hidden sm:table-cell">GA</th>
               <th className="text-right py-1 w-10">GD</th>
               <th className="text-right py-1 w-10 pr-3 font-bold text-white">Pts</th>
             </tr>
@@ -36,8 +36,8 @@ export default function StandingsTable({ group }: { group: Group }) {
                 <td className="text-right py-2">{row.won}</td>
                 <td className="text-right py-2">{row.draw}</td>
                 <td className="text-right py-2">{row.lost}</td>
-                <td className="text-right py-2">{row.goalsFor}</td>
-                <td className="text-right py-2">{row.goalsAgainst}</td>
+                <td className="text-right py-2 hidden sm:table-cell">{row.goalsFor}</td>
+                <td className="text-right py-2 hidden sm:table-cell">{row.goalsAgainst}</td>
                 <td className="text-right py-2">{row.goalDifference}</td>
                 <td className="text-right py-2 pr-3 font-bold">{row.points}</td>
               </tr>
