@@ -2,16 +2,21 @@ import { footballFetch } from '@/lib/football-api'
 import { Match } from '@/lib/types'
 import { groupMatchesByDate } from '@/lib/utils'
 import DayFlipper from '@/components/DayFlipper'
+import ErrorState from '@/components/ErrorState'
 
 export default async function Results() {
   const result = await footballFetch<{ matches: Match[] }>('/competitions/WC/matches')
 
   if (!result.ok) {
     return (
-      <div className="max-w-2xl mx-auto p-4 text-center text-gray-400">
-        {result.status === 429
-          ? 'Too many requests - please wait a minute and try again.'
-          : 'Something went wrong loading results.'}
+      <div className="max-w-2xl mx-auto p-4">
+        <ErrorState
+          message={
+            result.status === 429
+              ? 'Too many requests - please wait a minute and try again.'
+              : 'Something went wrong loading results.'
+          }
+        />
       </div>
     )
   }

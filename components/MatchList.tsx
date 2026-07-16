@@ -5,36 +5,46 @@ import Link from 'next/link'
 import { Match } from '@/lib/types'
 import { WORLD_CUP_FINAL_DATE } from '@/lib/utils'
 import MatchCard from './MatchCard'
+import ErrorState from './ErrorState'
 
 export default function MatchList() {
   const [matches, setMatches] = useState<Match[]>([])
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    const fetchMatches = async () => {
-      const res = await fetch('/api/matches')
+  const fetchMatches = async () => {
+    const res = await fetch('/api/matches')
 
-      if (!res.ok) {
-        setError(
-          res.status === 429
-            ? 'Too many requests - please wait a minute and try again.'
-            : 'Something went wrong loading matches.'
-        )
-        return
-      }
-
-      setError(null)
-      const data = await res.json()
-      setMatches(data.matches)
+    if (!res.ok) {
+      setError(
+        res.status === 429
+          ? 'Too many requests - please wait a minute and try again.'
+          : 'Something went wrong loading matches.'
+      )
+      return
     }
 
+    setError(null)
+    const data = await res.json()
+    setMatches(data.matches)
+  }
+
+  useEffect(() => {
     fetchMatches()
     const interval = setInterval(fetchMatches, 30_000)
     return () => clearInterval(interval)
   }, [])
 
   if (error) {
-    return <div className="text-center text-gray-400 p-4">{error}</div>
+    return (
+      <ErrorState message={error}>
+        <button
+          onClick={fetchMatches}
+          className="mt-2 text-sm font-medium tracking-widest uppercase text-yellow-400 hover:underline cursor-pointer"
+        >
+          Try again
+        </button>
+      </ErrorState>
+    )
   }
 
   const today = new Date().toISOString().split('T')[0]
