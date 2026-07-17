@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# World Cup Dashboard
+
+A dashboard for browsing the 2026 FIFA World Cup fixtures, results, standings, and top scorers, built with Next.js. Data is pulled live from the [football-data.org](https://www.football-data.org/) API, so fixtures, scores, and standings update automatically as real matches are played.
+
+**Live demo:** [world-cup-dashboard.vercel.app](https://world-cup-dashboard.vercel.app)
+
+![Day-by-day navigation on the Results page](docs/demo-dayflipper.gif)
+
+*A glance at the day-by-day navigation. See the [live demo](https://world-cup-dashboard.vercel.app) for the full app.*
+
+## Features
+
+- **Fixtures & results** — day-by-day navigation through matches, with handling of non-match days and post-tournament state
+- **Group standings** — full table for all 12 groups showing position, record (W/D/L), goal difference, and points, responsive down to mobile
+- **Top scorers** — leaderboard of the tournament's top 20 goalscorers
+- **Knockout bracket** — visual bracket for the knockout stage, separate from the group stage
+- **Error handling** — dedicated error states across all pages, with specific messaging for rate-limited responses
+
+## Stack
+
+- [Next.js](https://nextjs.org/) (App Router) + TypeScript
+- Tailwind CSS
+- [football-data.org](https://www.football-data.org/) API
+
+## Architecture notes
+
+- Data is fetched server-side in React Server Components (`app/*/page.tsx`), keeping the API key off the client and avoiding client-side loading spinners for page loads.
+- Server-rendered pages fetch football-data.org through a typed wrapper (`lib/football-api.ts`). The home page shows today's matches and needs to update live as scores change without a page refresh, so it polls a Next.js API route (`app/api/matches`) from the client instead.
+- Components are kept small and single-purpose (e.g. `MatchCard`, `StandingsTable`, `ScorersTable`, `KnockoutBracket`), with interactivity (like day navigation) isolated to client components only where needed.
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repo:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   git clone https://github.com/david-botha/world-cup-dashboard.git
+   cd world-cup-dashboard
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Add your football-data.org API key to `.env.local`:
 
-## Learn More
+   ```
+   FOOTBALL_DATA_API_KEY=your_key_here
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+   You can get a free key at [football-data.org](https://www.football-data.org/client/register).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Run the dev server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open [http://localhost:3000](http://localhost:3000).
